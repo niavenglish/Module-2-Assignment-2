@@ -4,7 +4,7 @@ This is my basic Flask app for the Python/API assignment. It has two endpoints, 
 
 ## What it does
 
-- `GET /hello` sends back a JSON greeting. If you add `?name=Alice` it says hello to Alice, otherwise it says hello to World.
+- `GET /hello` sends back a JSON greeting. If you add `?name=Nia` it says hello to Nia, otherwise it says hello to World.
 - `POST /sum` takes a JSON list of numbers and returns the total. If the input is bad (missing field, not a list, non-numbers, or invalid JSON) it returns a 400 error with a message.
 
 ## Setup
