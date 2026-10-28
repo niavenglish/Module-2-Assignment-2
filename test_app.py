@@ -1,13 +1,8 @@
 
-# Flask API Tests
-# This file tests the GET and POST endpoints
-# to make sure they return the correct results.
-
 import pytest
 from app import app
 
 
-@pytest.fixture
 def client():
     app.config['TESTING'] = True
 
@@ -15,7 +10,6 @@ def client():
         yield client
 
 
-# Test the hello endpoint with a name
 def test_hello_with_name(client):
     response = client.get('/hello?name=Nia')
 
@@ -23,7 +17,6 @@ def test_hello_with_name(client):
     assert response.get_json() == {'message': 'Hello, Nia!'}
 
 
-# Test the hello endpoint without a name
 def test_hello_without_name(client):
     response = client.get('/hello')
 
@@ -31,7 +24,6 @@ def test_hello_without_name(client):
     assert response.get_json() == {'message': 'Hello, World!'}
 
 
-# Test the sum endpoint with valid numbers
 def test_sum_valid(client):
     response = client.post('/sum', json={'numbers': [1, 2, 3]})
 
@@ -39,7 +31,6 @@ def test_sum_valid(client):
     assert response.get_json() == {'sum': 6}
 
 
-# Test the sum endpoint with a missing field
 def test_sum_missing_numbers(client):
     response = client.post('/sum', json={})
 
@@ -47,7 +38,6 @@ def test_sum_missing_numbers(client):
     assert 'error' in response.get_json()
 
 
-# Test the sum endpoint with invalid data
 def test_sum_invalid_numbers(client):
     response = client.post('/sum', json={'numbers': [1, 'hello', 3]})
 
@@ -55,7 +45,6 @@ def test_sum_invalid_numbers(client):
     assert 'error' in response.get_json()
 
 
-# Test the sum endpoint with an incorrect data type
 def test_sum_not_a_list(client):
     response = client.post('/sum', json={'numbers': '123'})
 
@@ -63,7 +52,6 @@ def test_sum_not_a_list(client):
     assert 'error' in response.get_json()
 
 
-# Test the sum endpoint with malformed JSON
 def test_sum_malformed_json(client):
     response = client.post(
         '/sum',
